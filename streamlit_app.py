@@ -1,13 +1,27 @@
 import streamlit as st
 import pandas as pd
 
-# read in data
-data = pd.read_excel("UNO Service Learning Data Sheet De-Identified Version.xlsx")
+def home():
+    st.title("Hope Foundation Dashboard")
 
-# filter the data for only rows where there is no Reason and Request Status is "Pending"
-page1_data = data[data['Reason - Pending/No'].isna()]
-page1_data = page1_data[page1_data['Request Status'] == 'Pending'][['Patient ID#', 'Grant Req Date', 'Application Signed?']] # Filter out columns so that only necessary information will be visible
-page1_data['Application Signed?'] = "No" # All of the remaining rows have NaN as their Application Signed? value so replace it NaN with something readable
+pages = {
+    "The Hope Foundation": [
+        st.Page("home.py", title="Home")
+    ],
+    "Applications": [
+        st.Page("ready_for_review.py", title="What applications are ready for review?"),
+    ],
+    "Our Support": [
+        st.Page("support_stats.py", title="How much support do we give?"),
+        st.Page("request_acceptance.py", title="How long does it take for us to send support?"),
+    ],
+    "Grant Usage": [
+        st.Page("grant_usage.py", title="How much of our grants are being used?")
+    ], 
+    "Our Past Year": [
+        st.Page("past_year_stats.py", title="What impact have we made in the past year?")
+    ]
+}
 
-st.title("Applications Ready to be Reviewed")
-st.dataframe(page1_data)
+pg = st.navigation(pages, position="top")
+pg.run()
