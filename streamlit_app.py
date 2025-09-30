@@ -16,7 +16,7 @@ pages = {
         st.Page("request_acceptance.py", title="How long does it take for us to send support?"),
     ],
     "Grant Usage": [
-        st.Page("grant_usage.py", title="How much of our grants are being used?")
+        st.Page("grant_usage.py", title="How many patients still have a balance on their grant?")
     ], 
     "Our Past Year": [
         st.Page("past_year_stats.py", title="What impact have we made in the past year?")
